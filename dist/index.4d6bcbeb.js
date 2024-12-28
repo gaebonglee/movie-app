@@ -603,6 +603,7 @@ var _routes = require("./routes");
 var _routesDefault = parcelHelpers.interopDefault(_routes);
 const root = document.querySelector("#root");
 root.append(new (0, _appDefault.default)().el);
+(0, _routesDefault.default)();
 
 },{"./App":"2kQhy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./routes":"3L9mC"}],"2kQhy":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -623,6 +624,7 @@ exports.default = App;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Components", ()=>Components);
+parcelHelpers.export(exports, "createRouter", ()=>createRouter);
 class Components {
     constructor(payload = {}){
         const { tagName = "div", state = {}, props = {} } = payload;
@@ -632,6 +634,29 @@ class Components {
         this.render();
     }
     render() {}
+}
+///// Router /////
+function routerRender(routes) {
+    if (!location.hash) history.replaceState(null, " ", "/#/");
+    const routerView = document.querySelector("router-view");
+    const [hash, queryString = ""] = location.hash.split("?");
+    const query = queryString.split("&").reduce((acc, cur)=>{
+        const [key, value] = cur.split("=");
+        acc[key] = value;
+        return acc;
+    }, {});
+    history.replaceState(query, "");
+    const currentRoute = routes.find((route)=>new RegExp(`${route.path}/?$`).test(hash));
+    routerView.innerHTML = "";
+    routerView.append(new currentRoute.component().el);
+}
+function createRouter(routes) {
+    return function() {
+        window.addEventListener("popstate", ()=>{
+            routerRender(routes);
+        });
+        routerRender(routes);
+    };
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports,__globalThis) {
@@ -670,14 +695,14 @@ parcelHelpers.defineInteropFlag(exports);
 var _heropyJs = require("../core/heropy.js");
 class TheHeader extends (0, _heropyJs.Components) {
     constructor(){
-        supper({
+        super({
             tagName: "header"
         });
     }
     render() {
         this.el.innerHTML = /* html */ `
         <a href="#/">Main!</a>
-        <a href="#about">About!</a>
+        <a href="#/about">About!</a>
         `;
     }
 }
@@ -686,11 +711,12 @@ exports.default = TheHeader;
 },{"../core/heropy.js":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3L9mC":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+var _heropy = require("../core/heropy");
 var _home = require("./Home");
 var _homeDefault = parcelHelpers.interopDefault(_home);
 var _about = require("./About");
 var _aboutDefault = parcelHelpers.interopDefault(_about);
-exports.default = createRouter([
+exports.default = (0, _heropy.createRouter)([
     {
         path: "#/",
         component: (0, _homeDefault.default)
@@ -701,7 +727,7 @@ exports.default = createRouter([
     }
 ]);
 
-},{"./Home":"0JSNG","./About":"gdB30","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"0JSNG":[function(require,module,exports,__globalThis) {
+},{"./Home":"0JSNG","./About":"gdB30","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/heropy":"57bZf"}],"0JSNG":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
@@ -720,8 +746,12 @@ parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
 class About extends (0, _heropy.Components) {
     render() {
+        const { a, b, c } = history.state;
         this.el.innerHTML = /* html */ `
         <h1>About Page!</h1>
+        <h2>${a}</h2>
+        <h2>${b}</h2>
+        <h2>${c}</h2>
         `;
     }
 }
