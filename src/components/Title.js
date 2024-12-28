@@ -6,7 +6,8 @@ export default class Title extends Components {
     super({
       tagName: "h1",
     });
-    messageStore.subscribe("message", () => {
+    messageStore.subscribe("message", (newVal) => {
+      console.log("newVal:", newVal);
       this.render();
     });
   }
