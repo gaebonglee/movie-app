@@ -62,6 +62,9 @@ export class Store {
     }
   }
   subscribe(key, cb) {
+    //this.observers['message'] = () => {}
+    // {message : () => {} }
+    // {message : [() => {}, () => {}, () => {}]}
     this.observers[key] = cb;
   }
 }

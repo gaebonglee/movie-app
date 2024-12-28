@@ -10,6 +10,7 @@ export default class Message extends Components {
   }
   render() {
     this.el.innerHTML = /*html*/ `
-        <h2>${messageStore.state.message}</h2>`;
+        <h2>${messageStore.state.message}</h2>
+        `;
   }
 }
