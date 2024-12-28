@@ -674,8 +674,9 @@ class Store {
         });
     }
     subscribe(key, cb) {
-        // {message : [cb1, cb2, cb3, ...]}
-        Array.isArray(this.observers[key]) ? this.observers[key].push(cb) : this.observers[key] = cb;
+        // {message: [cb1, cb2, cb3, ...]}
+        if (!Array.isArray(this.observers[key])) this.observers[key] = []; // key가 없거나 배열이 아닌 경우 초기화
+        this.observers[key].push(cb);
     }
 }
 
