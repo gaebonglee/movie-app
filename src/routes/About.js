@@ -1,6 +1,6 @@
 import { Components } from "../core/heropy";
 
-export default class About extends Components {
+export default class About extends Component {
   render() {
     const { a, b, c } = history.state;
     this.el.innerHTML = /* html */ `

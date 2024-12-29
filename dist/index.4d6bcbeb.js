@@ -611,7 +611,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("./core/heropy");
 var _theHeader = require("./components/TheHeader");
 var _theHeaderDefault = parcelHelpers.interopDefault(_theHeader);
-class App extends (0, _heropy.Components) {
+class App extends Component {
     render() {
         const routerView = document.createElement("router-view");
         this.el.append(new (0, _theHeaderDefault.default)().el, routerView);
@@ -623,11 +623,11 @@ exports.default = App;
 ///// Components //////
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Components", ()=>Components);
+parcelHelpers.export(exports, "Component", ()=>Component);
 parcelHelpers.export(exports, "createRouter", ()=>createRouter);
-////////// STORE ////////
+////////// STORE (컴포넌트 통신, 상태관리 개념) ////////
 parcelHelpers.export(exports, "Store", ()=>Store);
-class Components {
+class Component {
     constructor(payload = {}){
         const { tagName = "div", state = {}, props = {} } = payload;
         this.el = document.createElement(tagName);
@@ -637,7 +637,7 @@ class Components {
     }
     render() {}
 }
-///// Router /////
+///// Router (페이지 구분) /////
 function routerRender(routes) {
     if (!location.hash) history.replaceState(null, " ", "/#/");
     const routerView = document.querySelector("router-view");
@@ -714,7 +714,7 @@ exports.export = function(dest, destName, get) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _heropyJs = require("../core/heropy.js");
-class TheHeader extends (0, _heropyJs.Components) {
+class TheHeader extends Component {
     constructor(){
         super({
             tagName: "header"
@@ -758,7 +758,7 @@ var _message = require("../components/Message");
 var _messageDefault = parcelHelpers.interopDefault(_message);
 var _title = require("../components/Title");
 var _titleDefault = parcelHelpers.interopDefault(_title);
-class Home extends (0, _heropy.Components) {
+class Home extends Component {
     render() {
         this.el.innerHTML = /* html */ `
         <h1>Home Page!</h1>
@@ -774,7 +774,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
 var _message = require("../store/message");
 var _messageDefault = parcelHelpers.interopDefault(_message);
-class TextField extends (0, _heropy.Components) {
+class TextField extends Component {
     render() {
         this.el.innerHTML = /*html*/ `
     <input value="${(0, _messageDefault.default).state.message}" />`;
@@ -800,7 +800,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
 var _message = require("../store/message");
 var _messageDefault = parcelHelpers.interopDefault(_message);
-class Message extends (0, _heropy.Components) {
+class Message extends Component {
     constructor(){
         super();
         (0, _messageDefault.default).subscribe("message", ()=>{
@@ -821,7 +821,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
 var _message = require("../store/message");
 var _messageDefault = parcelHelpers.interopDefault(_message);
-class Title extends (0, _heropy.Components) {
+class Title extends Component {
     constructor(){
         super({
             tagName: "h1"
@@ -841,7 +841,7 @@ exports.default = Title;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
-class About extends (0, _heropy.Components) {
+class About extends Component {
     render() {
         const { a, b, c } = history.state;
         this.el.innerHTML = /* html */ `

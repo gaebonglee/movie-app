@@ -1,7 +1,7 @@
 import { Components } from "../core/heropy";
 import messageStore from "../store/message";
 
-export default class Title extends Components {
+export default class Title extends Component {
   constructor() {
     super({
       tagName: "h1",

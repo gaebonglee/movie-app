@@ -3,7 +3,7 @@ import TextField from "../components/TextField";
 import Message from "../components/Message";
 import Title from "../components/Title";
 
-export default class Home extends Components {
+export default class Home extends Component {
   render() {
     this.el.innerHTML = /* html */ `
         <h1>Home Page!</h1>

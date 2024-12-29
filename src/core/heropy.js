@@ -1,6 +1,5 @@
 ///// Components //////
-
-export class Components {
+export class Component {
   constructor(payload = {}) {
     const { tagName = "div", state = {}, props = {} } = payload;
     this.el = document.createElement(tagName);
@@ -11,8 +10,7 @@ export class Components {
   render() {}
 }
 
-///// Router /////
-
+///// Router (페이지 구분) /////
 function routerRender(routes) {
   if (!location.hash) {
     history.replaceState(null, " ", "/#/");
@@ -45,8 +43,7 @@ export function createRouter(routes) {
   };
 }
 
-////////// STORE ////////
-
+////////// STORE (컴포넌트 통신, 상태관리 개념) ////////
 export class Store {
   constructor(state) {
     this.state = {};
@@ -68,5 +65,4 @@ export class Store {
     }
     this.observers[key].push(cb);
   }
-  
 }

@@ -1,7 +1,7 @@
 import { Components } from "../core/heropy";
 import messageStore from "../store/message";
 
-export default class TextField extends Components {
+export default class TextField extends Component {
   render() {
     this.el.innerHTML = /*html*/ `
     <input value="${messageStore.state.message}" />`;

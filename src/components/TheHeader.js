@@ -1,6 +1,6 @@
 import { Components } from "../core/heropy.js";
 
-export default class TheHeader extends Components {
+export default class TheHeader extends Component {
   constructor() {
     super({
       tagName: "header",

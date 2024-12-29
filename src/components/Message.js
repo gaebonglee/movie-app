@@ -1,7 +1,7 @@
 import { Components } from "../core/heropy";
 import messageStore from "../store/message";
 
-export default class Message extends Components {
+export default class Message extends Component {
   constructor() {
     super();
     messageStore.subscribe("message", () => {

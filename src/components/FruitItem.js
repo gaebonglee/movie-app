@@ -1,6 +1,6 @@
 import { Components } from "../core/heropy";
 
-export default class FruitItem extends Components {
+export default class FruitItem extends Component {
   constructor(payload) {
     super({
       tagName: "li",
