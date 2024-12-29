@@ -1,5 +1,5 @@
 import { Component } from "../core/heropy";
-import messageStore from "../store/message";
+import messageStore from "../store/movie";
 
 export default class Message extends Component {
   constructor() {
