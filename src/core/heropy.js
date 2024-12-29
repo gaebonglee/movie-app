@@ -1,4 +1,4 @@
-///// Component /////
+///// --------- Component --------- /////
 export class Component {
   constructor(payload = {}) {
     const {
@@ -17,7 +17,7 @@ export class Component {
   }
 }
 
-///// Router /////
+///// --------- Router --------- /////
 // 페이지 렌더링!
 function routeRender(routes) {
   // 접속할 때 해시 모드가 아니면(해시가 없으면) /#/로 리다이렉트!
@@ -55,7 +55,7 @@ export function createRouter(routes) {
   };
 }
 
-///// Store /////
+///// --------- Store --------- /////
 export class Store {
   constructor(state) {
     this.state = {}; // 상태(데이터)
