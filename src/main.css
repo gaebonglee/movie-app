@@ -6,8 +6,8 @@ html {
   --color-white-20: rgba(255, 255, 255, 0.2);
   --color-white-10: rgba(255, 255, 255, 0.1);
   --color-white-5: rgba(255, 255, 255, 0.05);
-  --color-primary: #fdc000;
-  --color-hover: #f86a05;
+  --color-primary: #04d086;
+  --color-hover: #7b3dfc;
   --color-area: #1c212e;
 }
 body {
@@ -36,7 +36,7 @@ header {
   border: none;
   border-radius: 4px;
   outline: none;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--color-white);
   background-color: var(--color-area);
@@ -48,10 +48,11 @@ header {
 }
 
 .btn-primary {
-  background-color: var(--color-primary);
-  color: var(--color-black);
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
 }
 .btn-primary:hover {
+  border: 2px solid var(--color-hover);
   background-color: var(--color-hover);
   color: var(--color-white);
 }

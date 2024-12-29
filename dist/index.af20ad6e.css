@@ -6,8 +6,8 @@ html {
   --color-white-20: #fff3;
   --color-white-10: #ffffff1a;
   --color-white-5: #ffffff0d;
-  --color-primary: #fdc000;
-  --color-hover: #f86a05;
+  --color-primary: #04d086;
+  --color-hover: #7b3dfc;
   --color-area: #1c212e;
 }
 
@@ -40,7 +40,7 @@ header {
   border-radius: 4px;
   outline: none;
   padding: 0 20px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   transition: all .3s;
 }
@@ -50,11 +50,12 @@ header {
 }
 
 .btn-primary {
-  background-color: var(--color-primary);
-  color: var(--color-black);
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
 }
 
 .btn-primary:hover {
+  border: 2px solid var(--color-hover);
   background-color: var(--color-hover);
   color: var(--color-white);
 }
