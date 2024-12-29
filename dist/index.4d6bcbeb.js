@@ -835,8 +835,8 @@ const store = new (0, _heropy.Store)({
 });
 exports.default = store;
 const searchMovies = async (page)=>{
-    const res = await fetch(`https://omdbapi.com?apikey=cbd92b7d&s=${store.state.searchText}&page=${page}`);
-    const json = await res.json;
+    const res = await fetch(`https://omdbapi.com/?apikey=cbd92b7d&s=${store.state.searchText}&page=${page}`);
+    const json = await res.json();
     console.log(json);
 };
 
