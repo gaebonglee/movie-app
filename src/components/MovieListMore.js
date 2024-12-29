@@ -7,12 +7,16 @@ export default class MovieListMore extends Component {
       tagName: "button",
     });
     movieStore.subscribe("pageMax", () => {
-      const { page, pageMax } = movieStore.state;
-      if (pageMax > page) {
+      const { page, pageMax, movies } = movieStore.state;
+
+      if (pageMax > page && movies.length > 0) {
         this.el.classList.remove("hide");
       } else {
         this.el.classList.add("hide");
       }
+    });
+    movieStore.subscribe("loading", () => {
+      this.el.disabled = movieStore.state.loading;
     });
   }
   render() {

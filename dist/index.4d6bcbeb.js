@@ -846,14 +846,20 @@ const searchMovies = async (page)=>{
     store.state.loading = true;
     store.state.page = page;
     if (page === 1) store.state.movies = [];
-    const res = await fetch(`https://omdbapi.com/?apikey=cbd92b7d&s=${store.state.searchText}&page=${page}`);
-    const { Search, totalResults } = await res.json();
-    store.state.movies = [
-        ...store.state.movies,
-        ...Search
-    ];
-    store.state.pageMax = Math.ceil(Number(totalResults) / 10);
-    store.state.loading = false;
+    try {
+        const res = await fetch(`https://omdbapi.com/?apikey=cbd92b7d&s=${store.state.searchText}&page=${page}`);
+        const data = await res.json();
+        const { Search = [], totalResults = "0" } = data;
+        store.state.movies = [
+            ...store.state.movies,
+            ...Search
+        ];
+        store.state.pageMax = Math.ceil(Number(totalResults) / 10);
+    } catch (error) {
+        console.error("Failed to fetch movies:", error);
+    } finally{
+        store.state.loading = false;
+    }
 };
 
 },{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8UDl3":[function(require,module,exports,__globalThis) {
@@ -928,9 +934,12 @@ class MovieListMore extends (0, _heropy.Component) {
             tagName: "button"
         });
         (0, _movieDefault.default).subscribe("pageMax", ()=>{
-            const { page, pageMax } = (0, _movieDefault.default).state;
-            if (pageMax > page) this.el.classList.remove("hide");
+            const { page, pageMax, movies } = (0, _movieDefault.default).state;
+            if (pageMax > page && movies.length > 0) this.el.classList.remove("hide");
             else this.el.classList.add("hide");
+        });
+        (0, _movieDefault.default).subscribe("loading", ()=>{
+            this.el.disabled = (0, _movieDefault.default).state.loading;
         });
     }
     render() {
