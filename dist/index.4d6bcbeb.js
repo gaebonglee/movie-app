@@ -753,92 +753,44 @@ exports.default = (0, _heropy.createRouter)([
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
-var _textField = require("../components/TextField");
-var _textFieldDefault = parcelHelpers.interopDefault(_textField);
-var _message = require("../components/Message");
-var _messageDefault = parcelHelpers.interopDefault(_message);
-var _title = require("../components/Title");
-var _titleDefault = parcelHelpers.interopDefault(_title);
+// import TextField from "../components/TextField";
+// import Message from "../components/Message";
+// import Title from "../components/Title";
+var _headline = require("../components/Headline");
+var _headlineDefault = parcelHelpers.interopDefault(_headline);
 class Home extends (0, _heropy.Component) {
     render() {
-        this.el.innerHTML = /* html */ `
-        <h1>Home Page!</h1>
-        `;
-        this.el.append(new (0, _textFieldDefault.default)().el, new (0, _messageDefault.default)().el, new (0, _titleDefault.default)().el);
+        const headline = new (0, _headlineDefault.default)().el;
+        this.el.classList.add("container");
+        this.el.append(headline);
+    // this.el.append(new TextField().el, new Message().el, new Title().el);
     }
 }
 exports.default = Home;
 
-},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../components/TextField":"e6IWT","../components/Message":"i84kQ","../components/Title":"6wotK"}],"e6IWT":[function(require,module,exports,__globalThis) {
+},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../components/Headline":"gaVgo"}],"gaVgo":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
-var _message = require("../store/message");
-var _messageDefault = parcelHelpers.interopDefault(_message);
-class TextField extends (0, _heropy.Component) {
+class Headline extends (0, _heropy.Component) {
     render() {
+        this.el.classList.add("headline");
         this.el.innerHTML = /*html*/ `
-    <input value="${(0, _messageDefault.default).state.message}" />`;
-        const inputEl = this.el.querySelector("input");
-        inputEl.addEventListener("input", ()=>{
-            (0, _messageDefault.default).state.message = inputEl.value;
-        });
+        <h1>
+        <span>OMDb API</span><br>
+        THE OPEN<br>
+        MOVIE DATABASE
+        </h1>
+        <p>
+        The OMDb API is a RESTful web service to obtain movie information, 
+        all content and images on the site are contributed and maintained by our users.<br>
+        If you find this service useful, please consider making a one-time donation or become a patron.
+        </p>`;
     }
 }
-exports.default = TextField;
+exports.default = Headline;
 
-},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../store/message":"4gYOO"}],"4gYOO":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _heropy = require("../core/heropy");
-exports.default = new (0, _heropy.Store)({
-    message: "hello~"
-});
-
-},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"i84kQ":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _heropy = require("../core/heropy");
-var _message = require("../store/message");
-var _messageDefault = parcelHelpers.interopDefault(_message);
-class Message extends (0, _heropy.Component) {
-    constructor(){
-        super();
-        (0, _messageDefault.default).subscribe("message", ()=>{
-            this.render();
-        });
-    }
-    render() {
-        this.el.innerHTML = /*html*/ `
-        <h2>${(0, _messageDefault.default).state.message}</h2>
-        `;
-    }
-}
-exports.default = Message;
-
-},{"../core/heropy":"57bZf","../store/message":"4gYOO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6wotK":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _heropy = require("../core/heropy");
-var _message = require("../store/message");
-var _messageDefault = parcelHelpers.interopDefault(_message);
-class Title extends (0, _heropy.Component) {
-    constructor(){
-        super({
-            tagName: "h1"
-        });
-        (0, _messageDefault.default).subscribe("message", (newVal)=>{
-            console.log("newVal:", newVal);
-            this.render();
-        });
-    }
-    render() {
-        this.el.textContent = `Title : ${(0, _messageDefault.default).state.message}`;
-    }
-}
-exports.default = Title;
-
-},{"../core/heropy":"57bZf","../store/message":"4gYOO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gdB30":[function(require,module,exports,__globalThis) {
+},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gdB30":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
