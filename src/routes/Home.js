@@ -1,4 +1,4 @@
-import { Components } from "../core/heropy";
+import { Component } from "../core/heropy";
 import TextField from "../components/TextField";
 import Message from "../components/Message";
 import Title from "../components/Title";

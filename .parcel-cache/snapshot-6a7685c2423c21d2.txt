@@ -8,12 +8,12 @@
 89C:\Users\User\Desktop\movie-app\node_modules\caniuse-lite\data\features\es6-generators.js133797009649304031 0
 44C:\Users\User\Desktop\movie-app\package.json133797022829528478 0
 120C:\Users\User\Desktop\movie-app\node_modules\@parcel\source-map\parcel_sourcemap_node\artifacts\index.linux-x64-gnu.node133797009643587791 0
-36C:\Users\User\Desktop\movie-app\dist133798849874934793 1
+36C:\Users\User\Desktop\movie-app\dist133799476871712272 1
 72C:\Users\User\Desktop\movie-app\node_modules\cosmiconfig\dist\index.d.ts133797009642877629 0
 83C:\Users\User\Desktop\movie-app\node_modules\caniuse-lite\data\features\css-sel3.js133797009647415627 0
 108C:\Users\User\Desktop\movie-app\node_modules\posthtml\node_modules\entities\lib\generated\decode-data-xml.js133797009637853253 0
 99C:\Users\User\Desktop\movie-app\node_modules\@parcel\rust\parcel-node-bindings.linux-arm64-gnu.node133797009652817927 0
-42C:\Users\User\Desktop\movie-app\index.html133798655102384593 0
+42C:\Users\User\Desktop\movie-app\index.html133799473634380492 0
 76C:\Users\User\Desktop\movie-app\node_modules\caniuse-lite\data\regions\MZ.js133797009653161203 0
 80C:\Users\User\Desktop\movie-app\node_modules\@swc\helpers\_\_array_without_holes133797009646454318 1
 91C:\Users\User\Desktop\movie-app\node_modules\posthtml\node_modules\domutils\lib\querying.js133797009638373031 0
@@ -35,7 +35,7 @@
 81C:\Users\User\Desktop\movie-app\node_modules\@swc\helpers\esm\_define_property.js133797009645272257 0
 49C:\Users\User\Desktop\movie-app\package-lock.json133797009672758360 0
 90C:\Users\User\Desktop\movie-app\node_modules\caniuse-lite\data\features\mutation-events.js133797009653053446 0
-59C:\Users\User\Desktop\movie-app\src\components\FruitItem.js133798562024292773 0
+59C:\Users\User\Desktop\movie-app\src\components\FruitItem.js133799476713477711 0
 61C:\Users\User\Desktop\movie-app\node_modules\type-fest\source133797009642368219 1
 68C:\Users\User\Desktop\movie-app\node_modules\js-yaml\lib\type\int.js133797009639576380 0
 97C:\Users\User\Desktop\movie-app\node_modules\caniuse-lite\data\features\contentsecuritypolicy2.js133797009644815915 0
@@ -50,7 +50,7 @@
 61C:\Users\User\Desktop\movie-app\node_modules\@swc\helpers\cjs133797009644195772 1
 78C:\Users\User\Desktop\movie-app\node_modules\weak-lru-cache\tests\benchmark.js133797009635676484 0
 66C:\Users\User\Desktop\movie-app\node_modules\color-convert\LICENSE133797009637494657 0
-35C:\Users\User\Desktop\movie-app\src133798662478745055 1
+35C:\Users\User\Desktop\movie-app\src133798859476861557 1
 79C:\Users\User\Desktop\movie-app\node_modules\@parcel\codeframe\src\codeframe.js133797009641344673 0
 56C:\Users\User\Desktop\movie-app\node_modules\htmlparser2133797009641617215 1
 74C:\Users\User\Desktop\movie-app\node_modules\@swc\helpers\esm\_ts_param.js133797009646084665 0
@@ -65,7 +65,7 @@
 76C:\Users\User\Desktop\movie-app\node_modules\caniuse-lite\data\regions\GH.js133797009650355331 0
 78C:\Users\User\Desktop\movie-app\node_modules\@swc\helpers\cjs\_export_star.cjs133797009642655723 0
 61C:\Users\User\Desktop\movie-app\node_modules\has-flag\license133797009636385125 0
-42C:\Users\User\Desktop\movie-app\src\App.js133798619637027940 0
+42C:\Users\User\Desktop\movie-app\src\App.js133799476330148909 0
 87C:\Users\User\Desktop\movie-app\node_modules\@parcel\transformer-babel\src\constants.js133797009639282843 0
 53C:\Users\User\Desktop\movie-app\node_modules\domutils133797009642842307 1
 102C:\Users\User\Desktop\movie-app\node_modules\htmlnano\docs\versioned_docs\version-1.1.1\050-modules.md133797009643451592 0
@@ -75,7 +75,7 @@
 41C:\Users\User\Desktop\movie-app\src\store133798662548346191 1
 98C:\Users\User\Desktop\movie-app\node_modules\@swc\helpers\src\_class_static_private_method_get.mjs133797009650109918 0
 72C:\Users\User\Desktop\movie-app\node_modules\domelementtype\package.json133797009637778150 0
-44C:\Users\User\Desktop\movie-app\src\main.css133798646963763915 0
+44C:\Users\User\Desktop\movie-app\src\main.css133799472881968413 0
 52C:\Users\User\Desktop\movie-app\src\store\message.js133798666279079328 0
 81C:\Users\User\Desktop\movie-app\node_modules\@parcel\transformer-babel\src\jsx.js133797009639852716 0
 95C:\Users\User\Desktop\movie-app\node_modules\htmlnano\lib\modules\minifyConditionalComments.cjs133797009639954949 0
@@ -84,7 +84,7 @@
 88C:\Users\User\Desktop\movie-app\node_modules\posthtml\node_modules\entities\lib\index.js133797009638995344 0
 72C:\Users\User\Desktop\movie-app\node_modules\cosmiconfig\dist\merge.d.ts133797009642952739 0
 95C:\Users\User\Desktop\movie-app\node_modules\@swc\helpers\_\_class_apply_descriptor_destructure133797009646765483 1
-51C:\Users\User\Desktop\movie-app\src\routes\About.js133798631677591493 0
+51C:\Users\User\Desktop\movie-app\src\routes\About.js133799476871181590 0
 67C:\Users\User\Desktop\movie-app\node_modules\json5\lib\stringify.js133797009638922500 0
 78C:\Users\User\Desktop\movie-app\node_modules\node-addon-api\node_addon_api.gyp133797009635231170 0
 54C:\Users\User\Desktop\movie-app\node_modules\commander133797009639776781 1
@@ -92,7 +92,7 @@
 89C:\Users\User\Desktop\movie-app\node_modules\@parcel\transformer-html\src\dependencies.js133797009636344502 0
 110C:\Users\User\Desktop\movie-app\node_modules\node-gyp-build-optional-packages\node_modules\detect-libc\LICENSE133797009634935494 0
 51C:\Users\User\Desktop\movie-app\node_modules\braces133797009638965375 1
-50C:\Users\User\Desktop\movie-app\src\routes\Home.js133798849872987762 0
+50C:\Users\User\Desktop\movie-app\src\routes\Home.js133799476344693085 0
 76C:\Users\User\Desktop\movie-app\node_modules\@parcel\profiler\lib\index.d.ts133797009639852716 0
 76C:\Users\User\Desktop\movie-app\node_modules\caniuse-lite\data\regions\PL.js133797009653971427 0
 60C:\Users\User\Desktop\movie-app\node_modules\detect-libc\lib133797009637993772 1
@@ -101,8 +101,8 @@
 80C:\Users\User\Desktop\movie-app\node_modules\postcss-value-parser\lib\index.d.ts133797009638861943 0
 90C:\Users\User\Desktop\movie-app\node_modules\@swc\helpers\esm\_interop_require_wildcard.js133797009645487747 0
 82C:\Users\User\Desktop\movie-app\node_modules\electron-to-chromium\full-versions.js133797009637544675 0
-50C:\Users\User\Desktop\movie-app\src\core\heropy.js133798708719014582 0
-57C:\Users\User\Desktop\movie-app\src\components\Message.js133798715087682568 0
+50C:\Users\User\Desktop\movie-app\src\core\heropy.js133799476299393977 0
+57C:\Users\User\Desktop\movie-app\src\components\Message.js133799476630624510 0
 54C:\Users\User\Desktop\movie-app\node_modules\is-number133797009636253121 1
 61C:\Users\User\Desktop\movie-app\node_modules\msgpackr-extract133797009638232512 1
 91C:\Users\User\Desktop\movie-app\node_modules\@swc\helpers\cjs\_class_private_method_set.cjs133797009641853621 0
@@ -117,7 +117,7 @@
 70C:\Users\User\Desktop\movie-app\node_modules\domutils\lib\helpers.d.ts133797009643004731 0
 102C:\Users\User\Desktop\movie-app\node_modules\htmlnano\docs\versioned_docs\version-2.0.0\040-presets.md133797009643371602 0
 86C:\Users\User\Desktop\movie-app\node_modules\caniuse-lite\data\features\import-maps.js133797009650918435 0
-59C:\Users\User\Desktop\movie-app\src\components\TextField.js133798668458015523 0
+59C:\Users\User\Desktop\movie-app\src\components\TextField.js133799476698270202 0
 79C:\Users\User\Desktop\movie-app\node_modules\lines-and-columns\build\index.d.ts133797009637464663 0
 76C:\Users\User\Desktop\movie-app\node_modules\cosmiconfig\dist\types.d.ts.map133797009642272937 0
 66C:\Users\User\Desktop\movie-app\node_modules\import-fresh\index.js133797009635326338 0
@@ -126,7 +126,7 @@
 92C:\Users\User\Desktop\movie-app\node_modules\caniuse-lite\data\features\chacha20-poly1305.js133797009644300970 0
 77C:\Users\User\Desktop\movie-app\node_modules\htmlnano\lib\presets\ampSafe.cjs133797009635696587 0
 50C:\Users\User\Desktop\movie-app\node_modules\clone133797009637828129 1
-59C:\Users\User\Desktop\movie-app\src\components\TheHeader.js133798646520365498 0
+59C:\Users\User\Desktop\movie-app\src\components\TheHeader.js133799476680260103 0
 60C:\Users\User\Desktop\movie-app\node_modules\posthtml-parser133797009637394350 1
 63C:\Users\User\Desktop\movie-app\node_modules\json5\package.json133797009639521193 0
 73C:\Users\User\Desktop\movie-app\node_modules\posthtml-render\changelog.md133797009637154739 0
@@ -142,7 +142,7 @@
 63C:\Users\User\Desktop\movie-app\node_modules\lmdb\dict\dict.txt133797009645622912 0
 90C:\Users\User\Desktop\movie-app\node_modules\@parcel\transformer-raw\src\RawTransformer.js133797009636203186 0
 90C:\Users\User\Desktop\movie-app\node_modules\@parcel\runtime-js\lib\helpers\cacheLoader.js133797009638473881 0
-55C:\Users\User\Desktop\movie-app\src\components\Title.js133798849537512417 0
+55C:\Users\User\Desktop\movie-app\src\components\Title.js133799476658546028 0
 52C:\Users\User\Desktop\movie-app\node_modules\@parcel133797009672275989 1
 49C:\Users\User\Desktop\movie-app\node_modules\.bin133797009659751237 1
 85C:\Users\User\Desktop\movie-app\node_modules\caniuse-lite\data\features\array-flat.js133797009641902844 0
@@ -372,7 +372,7 @@
 74C:\Users\User\Desktop\movie-app\node_modules\caniuse-lite\data\browsers.js133797009643818127 0
 58C:\Users\User\Desktop\movie-app\node_modules\parent-module133797009636284532 1
 73C:\Users\User\Desktop\movie-app\node_modules\@parcel\transformer-json\src133797009636087986 1
-54C:\Users\User\Desktop\movie-app\dist\index.4d6bcbeb.js133798849874600559 0
+54C:\Users\User\Desktop\movie-app\dist\index.4d6bcbeb.js133799476871671235 0
 66C:\Users\User\Desktop\movie-app\node_modules\semver\internal\re.js133797009642197816 0
 68C:\Users\User\Desktop\movie-app\node_modules\lmdb\dist\index.cjs.map133797009645442514 0
 73C:\Users\User\Desktop\movie-app\node_modules\@parcel\profiler\build-ts.js133797009635381612 0
@@ -3863,7 +3863,7 @@
 79C:\Users\User\Desktop\movie-app\node_modules\@parcel\runtime-service-worker\src133797009636087986 1
 78C:\Users\User\Desktop\movie-app\node_modules\@parcel\runtime-react-refresh\lib133797009635411631 1
 87C:\Users\User\Desktop\movie-app\node_modules\@parcel\runtime-react-refresh\package.json133797009637198951 0
-47C:\Users\User\Desktop\movie-app\dist\index.html133798656910853880 0
+47C:\Users\User\Desktop\movie-app\dist\index.html133799476871540283 0
 78C:\Users\User\Desktop\movie-app\node_modules\@parcel\runtime-react-refresh\src133797009636097984 1
 101C:\Users\User\Desktop\movie-app\node_modules\@parcel\runtime-react-refresh\src\ReactRefreshRuntime.js133797009636213121 0
 101C:\Users\User\Desktop\movie-app\node_modules\@parcel\runtime-react-refresh\lib\ReactRefreshRuntime.js133797009635582116 0
@@ -4211,6 +4211,6 @@
 60C:\Users\User\Desktop\movie-app\node_modules\.bin\parcel.ps1133797009659751237 0
 56C:\Users\User\Desktop\movie-app\node_modules\.bin\semver133797009659771302 0
 60C:\Users\User\Desktop\movie-app\node_modules\.bin\semver.ps1133797009659771302 0
-58C:\Users\User\Desktop\movie-app\dist\index.4d6bcbeb.js.map133798849874645661 0
-55C:\Users\User\Desktop\movie-app\dist\index.af20ad6e.css133798849874889487 0
-59C:\Users\User\Desktop\movie-app\dist\index.af20ad6e.css.map133798849874924506 0
+58C:\Users\User\Desktop\movie-app\dist\index.4d6bcbeb.js.map133799476871702272 0
+55C:\Users\User\Desktop\movie-app\dist\index.af20ad6e.css133799476871550278 0
+59C:\Users\User\Desktop\movie-app\dist\index.af20ad6e.css.map133799476871682135 0

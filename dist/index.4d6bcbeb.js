@@ -609,74 +609,94 @@ root.append(new (0, _appDefault.default)().el);
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("./core/heropy");
-var _theHeader = require("./components/TheHeader");
-var _theHeaderDefault = parcelHelpers.interopDefault(_theHeader);
-class App extends Component {
+class App extends (0, _heropy.Component) {
     render() {
         const routerView = document.createElement("router-view");
-        this.el.append(new (0, _theHeaderDefault.default)().el, routerView);
+        this.el.append(routerView);
     }
 }
 exports.default = App;
 
-},{"./core/heropy":"57bZf","./components/TheHeader":"3Cyq4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"57bZf":[function(require,module,exports,__globalThis) {
-///// Components //////
+},{"./core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"57bZf":[function(require,module,exports,__globalThis) {
+///// Component /////
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Component", ()=>Component);
 parcelHelpers.export(exports, "createRouter", ()=>createRouter);
-////////// STORE (컴포넌트 통신, 상태관리 개념) ////////
+///// Store /////
 parcelHelpers.export(exports, "Store", ()=>Store);
 class Component {
     constructor(payload = {}){
-        const { tagName = "div", state = {}, props = {} } = payload;
-        this.el = document.createElement(tagName);
-        this.state = state;
-        this.props = props;
+        const { tagName = "div", props = {}, state = {} } = payload;
+        this.el = document.createElement(tagName); // 컴포넌트의 최상위 요소
+        this.props = props; // 컴포넌트가 사용될 때 부모 컴포넌트에서 받는 데이터
+        this.state = state; // 컴포넌트 안에서 사용할 데이터
         this.render();
     }
-    render() {}
+    render() {
+    // 컴포넌트를 렌더링하는 함수
+    // ...
+    }
 }
-///// Router (페이지 구분) /////
-function routerRender(routes) {
-    if (!location.hash) history.replaceState(null, " ", "/#/");
+///// Router /////
+// 페이지 렌더링!
+function routeRender(routes) {
+    // 접속할 때 해시 모드가 아니면(해시가 없으면) /#/로 리다이렉트!
+    if (!location.hash) history.replaceState(null, "", "/#/"); // (상태, 제목, 주소)
     const routerView = document.querySelector("router-view");
-    const [hash, queryString = ""] = location.hash.split("?");
+    const [hash, queryString = ""] = location.hash.split("?"); // 물음표를 기준으로 해시 정보와 쿼리스트링을 구분
+    // 1) 쿼리스트링을 객체로 변환해 히스토리의 상태에 저장!
     const query = queryString.split("&").reduce((acc, cur)=>{
         const [key, value] = cur.split("=");
         acc[key] = value;
         return acc;
     }, {});
-    history.replaceState(query, "");
+    history.replaceState(query, ""); // (상태, 제목)
+    // 2) 현재 라우트 정보를 찾아서 렌더링!
     const currentRoute = routes.find((route)=>new RegExp(`${route.path}/?$`).test(hash));
     routerView.innerHTML = "";
     routerView.append(new currentRoute.component().el);
+    // 3) 화면 출력 후 스크롤 위치 복구!
     window.scrollTo(0, 0);
 }
 function createRouter(routes) {
+    // 원하는(필요한) 곳에서 호출할 수 있도록 함수 데이터를 반환!
     return function() {
         window.addEventListener("popstate", ()=>{
-            routerRender(routes);
+            routeRender(routes);
         });
-        routerRender(routes);
+        routeRender(routes);
     };
 }
 class Store {
     constructor(state){
-        this.state = {};
+        this.state = {}; // 상태(데이터)
         this.observers = {};
-        for(const key in state)Object.defineProperty(this.state, key, {
+        for(const key in state)// 각 상태에 대한 변경 감시(Setter) 설정!
+        Object.defineProperty(this.state, key, {
+            // Getter
             get: ()=>state[key],
+            // Setter
             set: (val)=>{
                 state[key] = val;
+                if (Array.isArray(this.observers[key])) // 호출할 콜백이 있는 경우!
                 this.observers[key].forEach((observer)=>observer(val));
             }
         });
     }
+    // 상태 변경 구독!
     subscribe(key, cb) {
-        // {message: [cb1, cb2, cb3, ...]}
-        if (!Array.isArray(this.observers[key])) this.observers[key] = []; // key가 없거나 배열이 아닌 경우 초기화
-        this.observers[key].push(cb);
+        Array.isArray(this.observers[key]) // 이미 등록된 콜백이 있는지 확인!
+         ? this.observers[key].push(cb) // 있으면 새로운 콜백 밀어넣기!
+         : this.observers[key] = [
+            cb
+        ]; // 없으면 콜백 배열로 할당!
+    // 예시)
+    // observers = {
+    //   구독할상태이름: [실행할콜백1, 실행할콜백2]
+    //   movies: [cb, cb, cb],
+    //   message: [cb]
+    // }
     }
 }
 
@@ -710,26 +730,7 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"3Cyq4":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _heropyJs = require("../core/heropy.js");
-class TheHeader extends Component {
-    constructor(){
-        super({
-            tagName: "header"
-        });
-    }
-    render() {
-        this.el.innerHTML = /* html */ `
-        <a href="#/">Main!</a>
-        <a href="#/about">About!</a>
-        `;
-    }
-}
-exports.default = TheHeader;
-
-},{"../core/heropy.js":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3L9mC":[function(require,module,exports,__globalThis) {
+},{}],"3L9mC":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
@@ -758,7 +759,7 @@ var _message = require("../components/Message");
 var _messageDefault = parcelHelpers.interopDefault(_message);
 var _title = require("../components/Title");
 var _titleDefault = parcelHelpers.interopDefault(_title);
-class Home extends Component {
+class Home extends (0, _heropy.Component) {
     render() {
         this.el.innerHTML = /* html */ `
         <h1>Home Page!</h1>
@@ -774,7 +775,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
 var _message = require("../store/message");
 var _messageDefault = parcelHelpers.interopDefault(_message);
-class TextField extends Component {
+class TextField extends (0, _heropy.Component) {
     render() {
         this.el.innerHTML = /*html*/ `
     <input value="${(0, _messageDefault.default).state.message}" />`;
@@ -800,7 +801,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
 var _message = require("../store/message");
 var _messageDefault = parcelHelpers.interopDefault(_message);
-class Message extends Component {
+class Message extends (0, _heropy.Component) {
     constructor(){
         super();
         (0, _messageDefault.default).subscribe("message", ()=>{
@@ -821,7 +822,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
 var _message = require("../store/message");
 var _messageDefault = parcelHelpers.interopDefault(_message);
-class Title extends Component {
+class Title extends (0, _heropy.Component) {
     constructor(){
         super({
             tagName: "h1"
@@ -841,7 +842,7 @@ exports.default = Title;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
-class About extends Component {
+class About extends (0, _heropy.Component) {
     render() {
         const { a, b, c } = history.state;
         this.el.innerHTML = /* html */ `

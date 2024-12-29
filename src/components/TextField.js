@@ -1,4 +1,4 @@
-import { Components } from "../core/heropy";
+import { Component } from "../core/heropy";
 import messageStore from "../store/message";
 
 export default class TextField extends Component {

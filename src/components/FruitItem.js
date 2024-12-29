@@ -1,4 +1,4 @@
-import { Components } from "../core/heropy";
+import { Component } from "../core/heropy";
 
 export default class FruitItem extends Component {
   constructor(payload) {

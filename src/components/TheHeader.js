@@ -1,4 +1,4 @@
-import { Components } from "../core/heropy.js";
+import { Component } from "../core/heropy.js";
 
 export default class TheHeader extends Component {
   constructor() {
