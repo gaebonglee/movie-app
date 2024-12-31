@@ -609,15 +609,21 @@ root.append(new (0, _appDefault.default)().el);
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("./core/heropy");
+var _theHeader = require("./components/TheHeader");
+var _theHeaderDefault = parcelHelpers.interopDefault(_theHeader);
+var _theFooter = require("./components/TheFooter");
+var _theFooterDefault = parcelHelpers.interopDefault(_theFooter);
 class App extends (0, _heropy.Component) {
     render() {
+        const theHeader = new (0, _theHeaderDefault.default)().el;
+        const theFooter = new (0, _theFooterDefault.default)().el;
         const routerView = document.createElement("router-view");
-        this.el.append(routerView);
+        this.el.append(theHeader, routerView, theFooter);
     }
 }
 exports.default = App;
 
-},{"./core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"57bZf":[function(require,module,exports,__globalThis) {
+},{"./core/heropy":"57bZf","./components/TheHeader":"3Cyq4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/TheFooter":"b3x3c"}],"57bZf":[function(require,module,exports,__globalThis) {
 ///// --------- Component --------- /////
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -730,7 +736,111 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"3L9mC":[function(require,module,exports,__globalThis) {
+},{}],"3Cyq4":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _heropy = require("../core/heropy");
+class TheHeader extends (0, _heropy.Component) {
+    constructor(){
+        super({
+            tagName: "header",
+            state: {
+                menus: [
+                    {
+                        name: "Search",
+                        href: "#/"
+                    },
+                    {
+                        name: "Movie",
+                        href: "#/movie?id=tt4520988"
+                    },
+                    {
+                        name: "About",
+                        href: "#/about"
+                    }
+                ]
+            }
+        });
+        window.addEventListener("popstate", ()=>{
+            this.render();
+        });
+    }
+    render() {
+        this.el.innerHTML = /*html*/ `
+        <a 
+        href="#/" 
+        class="logo">
+        <span>OMDBAPI</span>.COM
+        </a>
+        <nav>
+            <ul>${this.state.menus.map((menu)=>{
+            const href = menu.href.split("?")[0];
+            const hash = location.hash.split("?")[0];
+            const isActive = href === hash;
+            return /*html*/ `
+                <li>
+                    <a 
+                    class ="${isActive ? "active" : ""}"
+                    href="${menu.href}">
+                        ${menu.name}
+                    </a>
+                </li>
+                `;
+        }).join("")}
+              </ul>
+        </nav> 
+        <a href="#/about" class="user">
+            <img src="../images/meme.png" alt="User">
+        </a>`;
+    }
+}
+exports.default = TheHeader;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/heropy":"57bZf"}],"b3x3c":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _heropy = require("../core/heropy");
+var _about = require("../store/about");
+var _aboutDefault = parcelHelpers.interopDefault(_about);
+class TheFooter extends (0, _heropy.Component) {
+    constructor(){
+        super({
+            tagName: "footer"
+        });
+    }
+    render() {
+        const { github, repository } = (0, _aboutDefault.default).state;
+        this.el.innerHTML = /*html*/ `
+    
+    <div>
+        <a href="${repository}">
+            GitHub Repository
+        </a>
+    </div>
+    <div>
+    <a href="${github}">
+            ${new Date().getFullYear()}
+            Ga young
+        </a>
+    </div>
+    `;
+    }
+}
+exports.default = TheFooter;
+
+},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../store/about":"4RAJO"}],"4RAJO":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _heropy = require("../core/heropy");
+exports.default = new (0, _heropy.Store)({
+    photo: "../images/meme.png",
+    name: "Ga Young Lee",
+    email: "2gayoung.2da@gmail.com",
+    github: "https://github.com/gaebonglee",
+    repository: "https://github.com/gaebonglee/movie-app"
+});
+
+},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3L9mC":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
@@ -738,6 +848,8 @@ var _home = require("./Home");
 var _homeDefault = parcelHelpers.interopDefault(_home);
 var _movie = require("./Movie");
 var _movieDefault = parcelHelpers.interopDefault(_movie);
+var _about = require("./About");
+var _aboutDefault = parcelHelpers.interopDefault(_about);
 exports.default = (0, _heropy.createRouter)([
     {
         path: "#/",
@@ -746,10 +858,14 @@ exports.default = (0, _heropy.createRouter)([
     {
         path: "#/movie",
         component: (0, _movieDefault.default)
+    },
+    {
+        path: "#/about",
+        component: (0, _aboutDefault.default)
     }
 ]);
 
-},{"./Home":"0JSNG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/heropy":"57bZf","./Movie":"1LTyN"}],"0JSNG":[function(require,module,exports,__globalThis) {
+},{"./Home":"0JSNG","./About":"gdB30","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/heropy":"57bZf","./Movie":"1LTyN"}],"0JSNG":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
@@ -809,7 +925,9 @@ class Search extends (0, _heropy.Component) {
     render() {
         this.el.classList.add("search");
         this.el.innerHTML = /*html*/ `
-    <input placeholder="Enter the movie title to search!"/>
+    <input 
+    value="${(0, _movieDefault.default).state.searchText}"
+    placeholder="Enter the movie title to search!"/>
     <button class="btn btn-primary">
         Search!
     </button>
@@ -979,7 +1097,31 @@ class MovieListMore extends (0, _heropy.Component) {
 }
 exports.default = MovieListMore;
 
-},{"../core/heropy":"57bZf","../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1LTyN":[function(require,module,exports,__globalThis) {
+},{"../core/heropy":"57bZf","../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gdB30":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _heropy = require("../core/heropy");
+var _about = require("../store/about");
+var _aboutDefault = parcelHelpers.interopDefault(_about);
+class About extends (0, _heropy.Component) {
+    render() {
+        const { photo, name, email, github } = (0, _aboutDefault.default).state;
+        this.el.classList.add("container", "about");
+        this.el.innerHTML = /*html*/ `
+    <div 
+    style = "background-image:url(${photo})"
+    class = "photo"
+    >
+    <p class="name">${name}</p>
+    <p ><a href = "https://mail.google.com/mail/?view=cm&fs=1&to=${email}" target ="_blank">${email}</a></p>
+    <p ><a href = "${github}" target ="_blank">GitHub</a></p>
+    </div>
+    `;
+    }
+}
+exports.default = About;
+
+},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../store/about":"4RAJO"}],"1LTyN":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
