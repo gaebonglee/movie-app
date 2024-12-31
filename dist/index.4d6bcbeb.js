@@ -840,7 +840,7 @@ const store = new (0, _heropy.Store)({
     page: 1,
     pageMax: 1,
     movies: [],
-    moive: {},
+    movie: {},
     loading: false,
     message: "Search for the movie title!"
 });
@@ -854,16 +854,19 @@ const searchMovies = async (page)=>{
     }
     try {
         const res = await fetch(`https://omdbapi.com/?apikey=cbd92b7d&s=${store.state.searchText}&page=${page}`);
-        const { Search, totalResults, Response, Error } = await res.json();
+        const { Response, Search, totalResults, Error } = await res.json();
         if (Response === "True") {
             store.state.movies = [
                 ...store.state.movies,
                 ...Search
             ];
             store.state.pageMax = Math.ceil(Number(totalResults) / 10);
-        } else store.state.message = Error;
+        } else {
+            store.state.message = Error;
+            store.state.pageMax = 1;
+        }
     } catch (error) {
-        console.log("search moive error:", error);
+        console.log("searchMovies error:", error);
     } finally{
         store.state.loading = false;
     }
@@ -871,9 +874,9 @@ const searchMovies = async (page)=>{
 const getMovieDetails = async (id)=>{
     try {
         const res = await fetch(`https://omdbapi.com/?apikey=cbd92b7d&i=${id}&plot=short`);
-        store.state.moive = await res.json();
+        store.state.movie = await res.json();
     } catch (error) {
-        console.log("getMovieDetails error", error);
+        console.log("getMovieDetails error:", error);
     }
 };
 
@@ -931,12 +934,16 @@ class MovieItem extends (0, _heropy.Component) {
         this.el.setAttribute("href", `#/movie?id=${movie.imdbID}`);
         this.el.classList.add("movie");
         this.el.style.backgroundImage = `url(${movie.Poster})`;
-        this.el.innerHTML = /*html*/ `      
+        this.el.innerHTML = /* html */ `
       <div class="info">
-        <div class="year">${movie.Year}</div>
-        <div class="title">${movie.Title}</div>
+        <div class="year">
+          ${movie.Year}
+        </div>
+        <div class="title">
+          ${movie.Title}
+        </div>
       </div>
-      `;
+    `;
     }
 }
 exports.default = MovieItem;
@@ -980,50 +987,63 @@ var _movie = require("../store/movie");
 var _movieDefault = parcelHelpers.interopDefault(_movie);
 class Movie extends (0, _heropy.Component) {
     async render() {
+        this.el.classList.add("container", "the-movie");
+        // 스켈레톤 UI 출력!
+        this.el.innerHTML = /* html */ `
+      <div class="poster skeleton"></div>
+      <div class="specs">
+        <div class="title skeleton"></div>
+        <div class="labels skeleton"></div>
+        <div class="plot skeleton"></div>
+      </div>
+    `;
+        // 영화 상세 정보 가져오기!
         await (0, _movie.getMovieDetails)(history.state.id);
         const { movie } = (0, _movieDefault.default).state;
-        this.el.classList.add("container", "the-movie");
-        this.el.innerHTML = /*html*/ `
-    <div 
-    style="background-image:url(${movie.Poster})" 
-    class="poster"></div>
-    <div class="specs">
+        const bigPoster = movie.Poster.replace("SX300", "SX700");
+        // this.el.classList.add('container', 'the-movie')
+        this.el.innerHTML = /* html */ `
+      <div
+        style="background-image: url(${bigPoster});"
+        class="poster">
+      </div>
+      <div class="specs">
         <div class="title">
-            ${movie.Title}
+          ${movie.Title}
         </div>
         <div class="labels">
-            <span>${movie.Released}</span>
-            &nbsp;/&nbsp;
-            <span>${movie.Runtime}</span>
-            &nbsp;/&nbsp;
-            <span>${movie.Country}</span>
+          <span>${movie.Released}</span>
+          &nbsp;/&nbsp;
+          <span>${movie.Runtime}</span>
+          &nbsp;/&nbsp;
+          <span>${movie.Country}</span>
         </div>
         <div class="plot">
-            ${movie.Plot}
+          ${movie.Plot}
         </div>
         <div>
-           <h3>Ratings</h3>
-           ${movie.Ratings.map((rating)=>{
+          <h3>Ratings</h3>
+          ${movie.Ratings.map((rating)=>{
             return `<p>${rating.Source} - ${rating.Value}</p>`;
         }).join("")}
         </div>
         <div>
-           <h3>Actors</h3>
-           <p>${movie.Actors}</p>
+          <h3>Actors</h3>
+          <p>${movie.Actors}</p>
         </div>
         <div>
-           <h3>Director</h3>
-           <p>${movie.Director}</p>
+          <h3>Director</h3>
+          <p>${movie.Director}</p>
         </div>
         <div>
-           <h3>Production</h3>
-           <p>${movie.Production}</p>
+          <h3>Production</h3>
+          <p>${movie.Production}</p>
         </div>
         <div>
-           <h3>Genre</h3>
-           <p>${movie.Genre}</p>
+          <h3>Genre</h3>
+          <p>${movie.Genre}</p>
         </div>
-    </div>
+      </div>
     `;
     }
 }
