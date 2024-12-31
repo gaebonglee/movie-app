@@ -4,13 +4,12 @@ import movieStore, { getMovieDetails } from "../store/movie";
 export default class Movie extends Component {
   async render() {
     await getMovieDetails(history.state.id);
-    console.log(movieStore.state.movie);
     const { movie } = movieStore.state;
 
     this.el.classList.add("container", "the-movie");
     this.el.innerHTML = /*html*/ `
     <div 
-    style="background-image:url(${movie.moive.Poster})" 
+    style="background-image:url(${movie.Poster})" 
     class="poster"></div>
     <div class="specs">
         <div class="title">
@@ -28,7 +27,9 @@ export default class Movie extends Component {
         </div>
         <div>
            <h3>Ratings</h3>
-           <p></p>
+           ${movie.Ratings.map((rating) => {
+             return `<p>${rating.Source} - ${rating.Value}</p>`;
+           }).join("")}
         </div>
         <div>
            <h3>Actors</h3>

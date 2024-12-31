@@ -829,7 +829,7 @@ class Search extends (0, _heropy.Component) {
 }
 exports.default = Search;
 
-},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../store/movie":"kq1bo"}],"kq1bo":[function(require,module,exports,__globalThis) {
+},{"../core/heropy":"57bZf","../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kq1bo":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "searchMovies", ()=>searchMovies);
@@ -915,7 +915,7 @@ class MovieList extends (0, _heropy.Component) {
 }
 exports.default = MovieList;
 
-},{"../core/heropy":"57bZf","../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./MovieItem":"fAzE8"}],"fAzE8":[function(require,module,exports,__globalThis) {
+},{"../core/heropy":"57bZf","../store/movie":"kq1bo","./MovieItem":"fAzE8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fAzE8":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _heropy = require("../core/heropy");
@@ -981,12 +981,11 @@ var _movieDefault = parcelHelpers.interopDefault(_movie);
 class Movie extends (0, _heropy.Component) {
     async render() {
         await (0, _movie.getMovieDetails)(history.state.id);
-        console.log((0, _movieDefault.default).state.movie);
         const { movie } = (0, _movieDefault.default).state;
         this.el.classList.add("container", "the-movie");
         this.el.innerHTML = /*html*/ `
     <div 
-    style="background-image:url(${movie.moive.Poster})" 
+    style="background-image:url(${movie.Poster})" 
     class="poster"></div>
     <div class="specs">
         <div class="title">
@@ -1004,7 +1003,9 @@ class Movie extends (0, _heropy.Component) {
         </div>
         <div>
            <h3>Ratings</h3>
-           <p></p>
+           ${movie.Ratings.map((rating)=>{
+            return `<p>${rating.Source} - ${rating.Value}</p>`;
+        }).join("")}
         </div>
         <div>
            <h3>Actors</h3>
@@ -1028,6 +1029,6 @@ class Movie extends (0, _heropy.Component) {
 }
 exports.default = Movie;
 
-},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../store/movie":"kq1bo"}]},["1Fqy1","gLLPy"], "gLLPy", "parcelRequire94c2")
+},{"../core/heropy":"57bZf","../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["1Fqy1","gLLPy"], "gLLPy", "parcelRequire94c2")
 
 //# sourceMappingURL=index.4d6bcbeb.js.map
