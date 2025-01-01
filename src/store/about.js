@@ -1,4 +1,4 @@
-import { Store } from "../core/heropy";
+import { Store } from "../core/core";
 
 export default new Store({
   photo: "../images/meme.png",

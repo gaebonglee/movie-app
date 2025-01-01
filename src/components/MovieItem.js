@@ -1,4 +1,4 @@
-import { Component } from "../core/heropy";
+import { Component } from "../core/core";
 
 export default class MovieItem extends Component {
   constructor(props) {

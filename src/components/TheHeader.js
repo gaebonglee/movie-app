@@ -1,4 +1,4 @@
-import { Component } from "../core/heropy";
+import { Component } from "../core/core";
 
 export default class TheHeader extends Component {
   constructor() {
@@ -12,7 +12,7 @@ export default class TheHeader extends Component {
           },
           {
             name: "Movie",
-            href: "#/movie?id=tt4520988",
+            href: "#/movie",
           },
           {
             name: "About",
@@ -26,31 +26,31 @@ export default class TheHeader extends Component {
     });
   }
   render() {
-    this.el.innerHTML = /*html*/ `
-        <a 
-        href="#/" 
+    this.el.innerHTML = /* html */ `
+      <a
+        href="#/"
         class="logo">
-        <span>OMDBAPI</span>.COM
-        </a>
-        <nav>
-            <ul>${this.state.menus
-              .map((menu) => {
-                const href = menu.href.split("?")[0];
-                const hash = location.hash.split("?")[0];
-                const isActive = href === hash;
-                return /*html*/ `
-                <li>
-                    <a 
-                    class ="${isActive ? "active" : ""}"
-                    href="${menu.href}">
-                        ${menu.name}
-                    </a>
-                </li>
-                `;
-              })
-              .join("")}
-              </ul>
-        </nav> 
+        <span>OMDbAPI</span>.COM
+      </a>
+      <nav>
+        <ul>
+          ${this.state.menus
+            .map((menu) => {
+              const href = menu.href.split("?")[0];
+              const hash = location.hash.split("?")[0];
+              const isActive = href === hash;
+              return /* html */ `
+              <li>
+                <a
+                  class="${isActive ? "active" : ""}"
+                  href="${menu.href}">
+                  ${menu.name}
+                </a>
+              </li>`;
+            })
+            .join("")}
+        </ul>
+      </nav>
         <a href="#/about" class="user">
             <img src="../images/meme.png" alt="User">
         </a>`;

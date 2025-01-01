@@ -1,7 +1,4 @@
-import { Component } from "../core/heropy";
-// import TextField from "../components/TextField";
-// import Message from "../components/Message";
-// import Title from "../components/Title";
+import { Component } from "../core/core";
 import Headline from "../components/Headline";
 import Search from "../components/Search";
 import MovieList from "../components/MovieList";
@@ -16,6 +13,6 @@ export default class Home extends Component {
 
     this.el.classList.add("container");
     this.el.append(headline, search, movieList, movieListMore);
-    // this.el.append(new TextField().el, new Message().el, new Title().el);
+
   }
 }

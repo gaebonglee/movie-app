@@ -1,4 +1,4 @@
-import { Component } from "../core/heropy";
+import { Component } from "../core/core";
 import movieStore, { getMovieDetails } from "../store/movie";
 
 export default class Movie extends Component {
@@ -13,7 +13,7 @@ export default class Movie extends Component {
         <div class="plot skeleton"></div>
       </div>
     `;
-    // 영화 상세 정보 가져오기!
+    // 영화 상세 정보 가져오기
     await getMovieDetails(history.state.id);
     const { movie } = movieStore.state;
     const bigPoster = movie.Poster.replace("SX300", "SX700");

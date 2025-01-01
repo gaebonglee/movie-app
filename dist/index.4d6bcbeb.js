@@ -608,12 +608,12 @@ root.append(new (0, _appDefault.default)().el);
 },{"./App":"2kQhy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./routes":"3L9mC"}],"2kQhy":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _heropy = require("./core/heropy");
+var _core = require("./core/core");
 var _theHeader = require("./components/TheHeader");
 var _theHeaderDefault = parcelHelpers.interopDefault(_theHeader);
 var _theFooter = require("./components/TheFooter");
 var _theFooterDefault = parcelHelpers.interopDefault(_theFooter);
-class App extends (0, _heropy.Component) {
+class App extends (0, _core.Component) {
     render() {
         const theHeader = new (0, _theHeaderDefault.default)().el;
         const theFooter = new (0, _theFooterDefault.default)().el;
@@ -623,7 +623,97 @@ class App extends (0, _heropy.Component) {
 }
 exports.default = App;
 
-},{"./core/heropy":"57bZf","./components/TheHeader":"3Cyq4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/TheFooter":"b3x3c"}],"57bZf":[function(require,module,exports,__globalThis) {
+},{"./components/TheHeader":"3Cyq4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/TheFooter":"b3x3c","./core/core":"3SuZC"}],"3Cyq4":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _core = require("../core/core");
+class TheHeader extends (0, _core.Component) {
+    constructor(){
+        super({
+            tagName: "header",
+            state: {
+                menus: [
+                    {
+                        name: "Search",
+                        href: "#/"
+                    },
+                    {
+                        name: "Movie",
+                        href: "#/movie"
+                    },
+                    {
+                        name: "About",
+                        href: "#/about"
+                    }
+                ]
+            }
+        });
+        window.addEventListener("popstate", ()=>{
+            this.render();
+        });
+    }
+    render() {
+        this.el.innerHTML = /* html */ `
+      <a
+        href="#/"
+        class="logo">
+        <span>OMDbAPI</span>.COM
+      </a>
+      <nav>
+        <ul>
+          ${this.state.menus.map((menu)=>{
+            const href = menu.href.split("?")[0];
+            const hash = location.hash.split("?")[0];
+            const isActive = href === hash;
+            return /* html */ `
+              <li>
+                <a
+                  class="${isActive ? "active" : ""}"
+                  href="${menu.href}">
+                  ${menu.name}
+                </a>
+              </li>`;
+        }).join("")}
+        </ul>
+      </nav>
+        <a href="#/about" class="user">
+            <img src="../images/meme.png" alt="User">
+        </a>`;
+    }
+}
+exports.default = TheHeader;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/core":"3SuZC"}],"gkKU3":[function(require,module,exports,__globalThis) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"3SuZC":[function(require,module,exports,__globalThis) {
 ///// --------- Component --------- /////
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -640,7 +730,7 @@ class Component {
         this.render();
     }
     render() {
-    // 컴포넌트를 렌더링하는 함수
+    // 컴포넌트를 렌더링하는 함수임임
     // ...
     }
 }
@@ -692,117 +782,27 @@ class Store {
     }
     // 상태 변경 구독!
     subscribe(key, cb) {
-        Array.isArray(this.observers[key]) // 이미 등록된 콜백이 있는지 확인!
-         ? this.observers[key].push(cb) // 있으면 새로운 콜백 밀어넣기!
+        Array.isArray(this.observers[key]) // 이미 등록된 콜백이 있는지 확인
+         ? this.observers[key].push(cb) // 있으면 새로운 콜백 밀어넣음음
          : this.observers[key] = [
             cb
-        ]; // 없으면 콜백 배열로 할당!
+        ]; // 없으면 콜백 배열로 할당
     // 예시)
     // observers = {
-    //   구독할상태이름: [실행할콜백1, 실행할콜백2]
+    //   구독할 상태 이름: [실행할콜백1, 실행할콜백2]
     //   movies: [cb, cb, cb],
     //   message: [cb]
     // }
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports,__globalThis) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"3Cyq4":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"b3x3c":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _heropy = require("../core/heropy");
-class TheHeader extends (0, _heropy.Component) {
-    constructor(){
-        super({
-            tagName: "header",
-            state: {
-                menus: [
-                    {
-                        name: "Search",
-                        href: "#/"
-                    },
-                    {
-                        name: "Movie",
-                        href: "#/movie?id=tt4520988"
-                    },
-                    {
-                        name: "About",
-                        href: "#/about"
-                    }
-                ]
-            }
-        });
-        window.addEventListener("popstate", ()=>{
-            this.render();
-        });
-    }
-    render() {
-        this.el.innerHTML = /*html*/ `
-        <a 
-        href="#/" 
-        class="logo">
-        <span>OMDBAPI</span>.COM
-        </a>
-        <nav>
-            <ul>${this.state.menus.map((menu)=>{
-            const href = menu.href.split("?")[0];
-            const hash = location.hash.split("?")[0];
-            const isActive = href === hash;
-            return /*html*/ `
-                <li>
-                    <a 
-                    class ="${isActive ? "active" : ""}"
-                    href="${menu.href}">
-                        ${menu.name}
-                    </a>
-                </li>
-                `;
-        }).join("")}
-              </ul>
-        </nav> 
-        <a href="#/about" class="user">
-            <img src="../images/meme.png" alt="User">
-        </a>`;
-    }
-}
-exports.default = TheHeader;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/heropy":"57bZf"}],"b3x3c":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _heropy = require("../core/heropy");
+var _core = require("../core/core");
 var _about = require("../store/about");
 var _aboutDefault = parcelHelpers.interopDefault(_about);
-class TheFooter extends (0, _heropy.Component) {
+class TheFooter extends (0, _core.Component) {
     constructor(){
         super({
             tagName: "footer"
@@ -810,29 +810,28 @@ class TheFooter extends (0, _heropy.Component) {
     }
     render() {
         const { github, repository } = (0, _aboutDefault.default).state;
-        this.el.innerHTML = /*html*/ `
-    
-    <div>
+        this.el.innerHTML = /* html */ `
+      <div>
         <a href="${repository}">
-            GitHub Repository
+          GitHub Repository
         </a>
-    </div>
-    <div>
-    <a href="${github}">
-            ${new Date().getFullYear()}
-            Ga young
+      </div>
+      <div>
+        <a href="${github}">
+          ${new Date().getFullYear()}
+        Ga Young
         </a>
-    </div>
+      </div>
     `;
     }
 }
 exports.default = TheFooter;
 
-},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../store/about":"4RAJO"}],"4RAJO":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/core":"3SuZC","../store/about":"4RAJO"}],"4RAJO":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _heropy = require("../core/heropy");
-exports.default = new (0, _heropy.Store)({
+var _core = require("../core/core");
+exports.default = new (0, _core.Store)({
     photo: "../images/meme.png",
     name: "Ga Young Lee",
     email: "2gayoung.2da@gmail.com",
@@ -840,10 +839,10 @@ exports.default = new (0, _heropy.Store)({
     repository: "https://github.com/gaebonglee/movie-app"
 });
 
-},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3L9mC":[function(require,module,exports,__globalThis) {
+},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3L9mC":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _heropy = require("../core/heropy");
+var _core = require("../core/core");
 var _home = require("./Home");
 var _homeDefault = parcelHelpers.interopDefault(_home);
 var _movie = require("./Movie");
@@ -852,7 +851,7 @@ var _about = require("./About");
 var _aboutDefault = parcelHelpers.interopDefault(_about);
 var _notFound = require("./NotFound");
 var _notFoundDefault = parcelHelpers.interopDefault(_notFound);
-exports.default = (0, _heropy.createRouter)([
+exports.default = (0, _core.createRouter)([
     {
         path: "#/",
         component: (0, _homeDefault.default)
@@ -871,13 +870,10 @@ exports.default = (0, _heropy.createRouter)([
     }
 ]);
 
-},{"./Home":"0JSNG","./About":"gdB30","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/heropy":"57bZf","./Movie":"1LTyN","./NotFound":"4fDiL"}],"0JSNG":[function(require,module,exports,__globalThis) {
+},{"./Home":"0JSNG","./About":"gdB30","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./Movie":"1LTyN","../core/core":"3SuZC","./NotFound":"4fDiL"}],"0JSNG":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _heropy = require("../core/heropy");
-// import TextField from "../components/TextField";
-// import Message from "../components/Message";
-// import Title from "../components/Title";
+var _core = require("../core/core");
 var _headline = require("../components/Headline");
 var _headlineDefault = parcelHelpers.interopDefault(_headline);
 var _search = require("../components/Search");
@@ -886,7 +882,7 @@ var _movieList = require("../components/MovieList");
 var _movieListDefault = parcelHelpers.interopDefault(_movieList);
 var _movieListMore = require("../components/MovieListMore");
 var _movieListMoreDefault = parcelHelpers.interopDefault(_movieListMore);
-class Home extends (0, _heropy.Component) {
+class Home extends (0, _core.Component) {
     render() {
         const headline = new (0, _headlineDefault.default)().el;
         const search = new (0, _searchDefault.default)().el;
@@ -894,16 +890,15 @@ class Home extends (0, _heropy.Component) {
         const movieListMore = new (0, _movieListMoreDefault.default)().el;
         this.el.classList.add("container");
         this.el.append(headline, search, movieList, movieListMore);
-    // this.el.append(new TextField().el, new Message().el, new Title().el);
     }
 }
 exports.default = Home;
 
-},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../components/Headline":"gaVgo","../components/Search":"jqPPz","../components/MovieList":"8UDl3","../components/MovieListMore":"3ZUar"}],"gaVgo":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../components/Headline":"gaVgo","../components/Search":"jqPPz","../components/MovieList":"8UDl3","../components/MovieListMore":"3ZUar","../core/core":"3SuZC"}],"gaVgo":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _heropy = require("../core/heropy");
-class Headline extends (0, _heropy.Component) {
+var _core = require("../core/core");
+class Headline extends (0, _core.Component) {
     render() {
         this.el.classList.add("headline");
         this.el.innerHTML = /*html*/ `
@@ -921,22 +916,22 @@ class Headline extends (0, _heropy.Component) {
 }
 exports.default = Headline;
 
-},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jqPPz":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/core":"3SuZC"}],"jqPPz":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _heropy = require("../core/heropy");
+var _core = require("../core/core");
 var _movie = require("../store/movie");
 var _movieDefault = parcelHelpers.interopDefault(_movie);
-class Search extends (0, _heropy.Component) {
+class Search extends (0, _core.Component) {
     render() {
         this.el.classList.add("search");
-        this.el.innerHTML = /*html*/ `
-    <input 
-    value="${(0, _movieDefault.default).state.searchText}"
-    placeholder="Enter the movie title to search!"/>
-    <button class="btn btn-primary">
+        this.el.innerHTML = /* html */ `
+      <input 
+        value="${(0, _movieDefault.default).state.searchText}"
+        placeholder="Enter the movie title to search!" />
+      <button class="btn btn-primary">
         Search!
-    </button>
+      </button>
     `;
         const inputEl = this.el.querySelector("input");
         inputEl.addEventListener("input", ()=>{
@@ -953,13 +948,13 @@ class Search extends (0, _heropy.Component) {
 }
 exports.default = Search;
 
-},{"../core/heropy":"57bZf","../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kq1bo":[function(require,module,exports,__globalThis) {
+},{"../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/core":"3SuZC"}],"kq1bo":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "searchMovies", ()=>searchMovies);
 parcelHelpers.export(exports, "getMovieDetails", ()=>getMovieDetails);
-var _heropy = require("../core/heropy");
-const store = new (0, _heropy.Store)({
+var _core = require("../core/core");
+const store = new (0, _core.Store)({
     searchText: "",
     page: 1,
     pageMax: 1,
@@ -1004,15 +999,15 @@ const getMovieDetails = async (id)=>{
     }
 };
 
-},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8UDl3":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/core":"3SuZC"}],"8UDl3":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _heropy = require("../core/heropy");
+var _core = require("../core/core");
 var _movie = require("../store/movie");
 var _movieDefault = parcelHelpers.interopDefault(_movie);
 var _movieItem = require("./MovieItem");
 var _movieItemDefault = parcelHelpers.interopDefault(_movieItem);
-class MovieList extends (0, _heropy.Component) {
+class MovieList extends (0, _core.Component) {
     constructor(){
         super();
         (0, _movieDefault.default).subscribe("movies", ()=>{
@@ -1027,11 +1022,10 @@ class MovieList extends (0, _heropy.Component) {
     }
     render() {
         this.el.classList.add("movie-list");
-        this.el.innerHTML = /*html*/ `
-    ${(0, _movieDefault.default).state.message ? `<div class = "message">${(0, _movieDefault.default).state.message}</div>` : '<div class="movies"></div>'}
-
+        this.el.innerHTML = /* html */ `
+    ${(0, _movieDefault.default).state.message ? `<div class="message">${(0, _movieDefault.default).state.message}</div>` : '<div class="movies"></div>'}
     <div class="the-loader hide"></div>
-    `;
+  `;
         const moviesEl = this.el.querySelector(".movies");
         moviesEl?.append(...(0, _movieDefault.default).state.movies.map((movie)=>new (0, _movieItemDefault.default)({
                 movie
@@ -1042,11 +1036,11 @@ class MovieList extends (0, _heropy.Component) {
 }
 exports.default = MovieList;
 
-},{"../core/heropy":"57bZf","../store/movie":"kq1bo","./MovieItem":"fAzE8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fAzE8":[function(require,module,exports,__globalThis) {
+},{"../store/movie":"kq1bo","./MovieItem":"fAzE8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/core":"3SuZC"}],"fAzE8":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _heropy = require("../core/heropy");
-class MovieItem extends (0, _heropy.Component) {
+var _core = require("../core/core");
+class MovieItem extends (0, _core.Component) {
     constructor(props){
         super({
             props,
@@ -1072,29 +1066,25 @@ class MovieItem extends (0, _heropy.Component) {
 }
 exports.default = MovieItem;
 
-},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3ZUar":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/core":"3SuZC"}],"3ZUar":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _heropy = require("../core/heropy");
+var _core = require("../core/core");
 var _movie = require("../store/movie");
 var _movieDefault = parcelHelpers.interopDefault(_movie);
-class MovieListMore extends (0, _heropy.Component) {
+class MovieListMore extends (0, _core.Component) {
     constructor(){
         super({
             tagName: "button"
         });
         (0, _movieDefault.default).subscribe("pageMax", ()=>{
-            const { page, pageMax, movies } = (0, _movieDefault.default).state;
-            if (pageMax > page && movies.length > 0) this.el.classList.remove("hide");
-            else this.el.classList.add("hide");
-        });
-        (0, _movieDefault.default).subscribe("loading", ()=>{
-            this.el.disabled = (0, _movieDefault.default).state.loading;
+            const { page, pageMax } = (0, _movieDefault.default).state;
+            pageMax > page ? this.el.classList.remove("hide") : this.el.classList.add("hide");
         });
     }
     render() {
         this.el.classList.add("btn", "view-more", "hide");
-        this.el.textContent = "View More";
+        this.el.textContent = "View more..";
         this.el.addEventListener("click", async ()=>{
             this.el.classList.add("hide");
             await (0, _movie.searchMovies)((0, _movieDefault.default).state.page + 1);
@@ -1103,37 +1093,39 @@ class MovieListMore extends (0, _heropy.Component) {
 }
 exports.default = MovieListMore;
 
-},{"../core/heropy":"57bZf","../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gdB30":[function(require,module,exports,__globalThis) {
+},{"../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/core":"3SuZC"}],"gdB30":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _heropy = require("../core/heropy");
+var _core = require("../core/core");
 var _about = require("../store/about");
 var _aboutDefault = parcelHelpers.interopDefault(_about);
-class About extends (0, _heropy.Component) {
+class About extends (0, _core.Component) {
     render() {
         const { photo, name, email, github } = (0, _aboutDefault.default).state;
         this.el.classList.add("container", "about");
         this.el.innerHTML = /*html*/ `
-    <div 
-    style = "background-image:url(${photo})"
-    class = "photo"
-    >
-    <p class="name">${name}</p>
-    <p ><a href = "https://mail.google.com/mail/?view=cm&fs=1&to=${email}" target ="_blank">${email}</a></p>
-    <p ><a href = "${github}" target ="_blank">GitHub</a></p>
-    </div>
+    <div
+        style="background-image: url(${photo})" 
+        class="photo"></div>
+      <p class="name">${name}</p>
+      <p>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=${email}" target="_blank">
+          ${email}
+        </a>
+      </p>
+      <p><a href="${github}" target="_blank">GitHub</a></p>
     `;
     }
 }
 exports.default = About;
 
-},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../store/about":"4RAJO"}],"1LTyN":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/core":"3SuZC","../store/about":"4RAJO"}],"1LTyN":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _heropy = require("../core/heropy");
+var _core = require("../core/core");
 var _movie = require("../store/movie");
 var _movieDefault = parcelHelpers.interopDefault(_movie);
-class Movie extends (0, _heropy.Component) {
+class Movie extends (0, _core.Component) {
     async render() {
         this.el.classList.add("container", "the-movie");
         // 스켈레톤 UI 출력!
@@ -1145,7 +1137,7 @@ class Movie extends (0, _heropy.Component) {
         <div class="plot skeleton"></div>
       </div>
     `;
-        // 영화 상세 정보 가져오기!
+        // 영화 상세 정보 가져오기
         await (0, _movie.getMovieDetails)(history.state.id);
         const { movie } = (0, _movieDefault.default).state;
         const bigPoster = movie.Poster.replace("SX300", "SX700");
@@ -1197,11 +1189,11 @@ class Movie extends (0, _heropy.Component) {
 }
 exports.default = Movie;
 
-},{"../core/heropy":"57bZf","../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4fDiL":[function(require,module,exports,__globalThis) {
+},{"../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/core":"3SuZC"}],"4fDiL":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _heropy = require("../core/heropy");
-class NotFound extends (0, _heropy.Component) {
+var _core = require("../core/core");
+class NotFound extends (0, _core.Component) {
     render() {
         this.el.classList.add('container', 'not-found');
         this.el.innerHTML = /*html*/ `
@@ -1213,6 +1205,6 @@ class NotFound extends (0, _heropy.Component) {
 }
 exports.default = NotFound;
 
-},{"../core/heropy":"57bZf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["1Fqy1","gLLPy"], "gLLPy", "parcelRequire94c2")
+},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["1Fqy1","gLLPy"], "gLLPy", "parcelRequire94c2")
 
 //# sourceMappingURL=index.4d6bcbeb.js.map
