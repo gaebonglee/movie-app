@@ -981,8 +981,8 @@ const searchMovies = async (page)=>{
             ];
             store.state.pageMax = Math.ceil(Number(totalResults) / 10);
         } else {
-            store.state.message = Error;
-            store.state.pageMax = 1;
+            store.state.message = Error || "Movie not found!";
+            store.state.pageMax = store.state.page;
         }
     } catch (error) {
         console.log("searchMovies error:", error);
@@ -1078,13 +1078,16 @@ class MovieListMore extends (0, _core.Component) {
             tagName: "button"
         });
         (0, _movieDefault.default).subscribe("pageMax", ()=>{
-            const { page, pageMax } = (0, _movieDefault.default).state;
-            pageMax > page ? this.el.classList.remove("hide") : this.el.classList.add("hide");
+            const { page, pageMax, movies } = (0, _movieDefault.default).state;
+            const calculatedPageMax = Math.ceil(movies.length / 10);
+            console.log("Movies length:", movies.length, "PageMax:", pageMax, "Calculated PageMax:", calculatedPageMax, "Page:", page);
+            if (calculatedPageMax >= pageMax) this.el.classList.add("hide");
+            else this.el.classList.remove("hide");
         });
     }
     render() {
         this.el.classList.add("btn", "view-more", "hide");
-        this.el.textContent = "View more..";
+        this.el.textContent = "View more";
         this.el.addEventListener("click", async ()=>{
             this.el.classList.add("hide");
             await (0, _movie.searchMovies)((0, _movieDefault.default).state.page + 1);
