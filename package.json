@@ -1,7 +1,7 @@
 {
   "name": "movie-app",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "",
   "scripts": {
     "dev": "parcel ./index.html",
     "bulid": "parcel build ./index.html"
@@ -9,7 +9,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "parcel": "^2.13.3"
   }
