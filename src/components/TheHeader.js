@@ -12,7 +12,7 @@ export default class TheHeader extends Component {
           },
           {
             name: "Movie",
-            href: "#/movie",
+            href: "#/movie?id=tt4520988",
           },
           {
             name: "About",

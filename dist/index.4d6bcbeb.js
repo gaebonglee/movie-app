@@ -639,7 +639,7 @@ class TheHeader extends (0, _core.Component) {
                     },
                     {
                         name: "Movie",
-                        href: "#/movie"
+                        href: "#/movie?id=tt4520988"
                     },
                     {
                         name: "About",
