@@ -13,10 +13,12 @@ export default class Movie extends Component {
         <div class="plot skeleton"></div>
       </div>
     `;
-    // 영화 상세 정보 가져오기
+    // 영화 상세 정보 가져오기!
     await getMovieDetails(history.state.id);
     const { movie } = movieStore.state;
-    const bigPoster = movie.Poster.replace("SX300", "SX700");
+    const bigPoster = movie.Poster
+      ? movie.Poster.replace("SX300", "SX700")
+      : "";
 
     // this.el.classList.add('container', 'the-movie')
     this.el.innerHTML = /* html */ `

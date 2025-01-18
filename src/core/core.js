@@ -1,4 +1,4 @@
-///// --------- Component --------- /////
+///// Component /////
 export class Component {
   constructor(payload = {}) {
     const {
@@ -12,12 +12,12 @@ export class Component {
     this.render();
   }
   render() {
-    // 컴포넌트를 렌더링하는 함수임임
+    // 컴포넌트를 렌더링하는 함수
     // ...
   }
 }
 
-///// --------- Router --------- /////
+///// Router /////
 // 페이지 렌더링!
 function routeRender(routes) {
   // 접속할 때 해시 모드가 아니면(해시가 없으면) /#/로 리다이렉트!
@@ -55,7 +55,7 @@ export function createRouter(routes) {
   };
 }
 
-///// --------- Store --------- /////
+///// Store /////
 export class Store {
   constructor(state) {
     this.state = {}; // 상태(데이터)
@@ -78,13 +78,13 @@ export class Store {
   }
   // 상태 변경 구독!
   subscribe(key, cb) {
-    Array.isArray(this.observers[key]) // 이미 등록된 콜백이 있는지 확인
-      ? this.observers[key].push(cb) // 있으면 새로운 콜백 밀어넣음음
-      : (this.observers[key] = [cb]); // 없으면 콜백 배열로 할당
+    Array.isArray(this.observers[key]) // 이미 등록된 콜백이 있는지 확인!
+      ? this.observers[key].push(cb) // 있으면 새로운 콜백 밀어넣기!
+      : (this.observers[key] = [cb]); // 없으면 콜백 배열로 할당!
 
     // 예시)
     // observers = {
-    //   구독할 상태 이름: [실행할콜백1, 실행할콜백2]
+    //   구독할상태이름: [실행할콜백1, 실행할콜백2]
     //   movies: [cb, cb, cb],
     //   message: [cb]
     // }

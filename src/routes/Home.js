@@ -13,6 +13,5 @@ export default class Home extends Component {
 
     this.el.classList.add("container");
     this.el.append(headline, search, movieList, movieListMore);
-
   }
 }
