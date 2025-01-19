@@ -1,14 +1,13 @@
 import { Component } from "../core/core";
 import aboutStore from "../store/about";
+import userImage from "../../public/images/me.png";
 
 export default class About extends Component {
   render() {
     const { photo, name, email, github } = aboutStore.state;
     this.el.classList.add("container", "about");
     this.el.innerHTML = /*html*/ `
-    <div
-        style="background-image: url(${photo})" 
-        class="photo"></div>
+    <div class="photo"><img src="${userImage}"/></div>
       <p class="name">${name}</p>
       <p>
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=${email}" target="_blank">

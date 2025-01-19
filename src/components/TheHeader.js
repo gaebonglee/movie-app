@@ -1,5 +1,5 @@
 import { Component } from "../core/core";
-
+import userImage from "../../public/images/me.png";
 export default class TheHeader extends Component {
   constructor() {
     super({
@@ -52,7 +52,7 @@ export default class TheHeader extends Component {
         </ul>
       </nav>
         <a href="#/about" class="user">
-            <img src="../images/meme.png" alt="User">
+            <img src="${userImage}" alt="User">
         </a>`;
   }
 }
